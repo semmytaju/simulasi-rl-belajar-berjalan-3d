@@ -1,0 +1,79 @@
+Options -Indexes -Multiviews
+ServerSignature Off
+
+ErrorDocument 400 /madisonschool/errors/index/400
+ErrorDocument 401 /madisonschool/errors/index/401
+ErrorDocument 403 /madisonschool/errors/index/403
+ErrorDocument 404 /madisonschool/errors/index/404
+ErrorDocument 405 /madisonschool/errors/index/405
+ErrorDocument 500 /madisonschool/errors/index/500
+ErrorDocument 503 /madisonschool/errors/index/503
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(self), camera=(self), microphone=()"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set X-Permitted-Cross-Domain-Policies "none"
+    Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
+    Header unset X-Powered-By
+</IfModule>
+
+# 3. BLOCK DANGEROUS HTTP METHODS (XST & Verb Tampering Prevention)
+<LimitExcept GET POST HEAD OPTIONS>
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order Allow,Deny
+        Deny from all
+    </IfModule>
+</LimitExcept>
+
+# 4. BLOCK ACCESS TO SENSITIVE DOTFILES & HIDDEN METADATA
+<FilesMatch "^\.">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order Allow,Deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# 5. BLOCK ACCESS TO SENSITIVE EXTENSIONS (Backups, SQL, Logs, Configs)
+<FilesMatch "(?i)\.(sql|bak|backup|old|tmp|temp|log|env.*|ini|conf|config|yml|yaml|lock|sh|ps1|bat|cmd|git.*|svn.*)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order Allow,Deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# 6. BLOCK SPECIFIC DEPENDENCY & BUILD MANIFEST FILES
+<FilesMatch "(?i)^(composer\.json|composer\.lock|package\.json|package-lock\.json|tsconfig\.json|readme\.md|license\.txt)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order Allow,Deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# 6. HARDENED REWRITE & MVC ROUTING
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Block Cross-Site Tracing (TRACE / TRACK)
+    RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK) [NC]
+    RewriteRule .* - [F,L]
+
+    # Route clean URLs to index.php (Application Gateway WAF in App.php inspects all parameters)
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+</IfModule>
