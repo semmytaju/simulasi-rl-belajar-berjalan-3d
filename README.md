@@ -1,6 +1,6 @@
 <img src="/images/review.png" width="800">
 
-# 🏃‍♂️ BalanceAI — 3D Bipedal Humanoid Learning to Walk (Reinforcement Learning Web Lab)
+# 🏃‍♂️ 3D Humanoid Learning to Walk (Reinforcement Learning Web Lab)
 
 ![PHP 8+](https://img.shields.io/badge/PHP-8.0%2B-777BB4?logo=php&logoColor=white)
 ![MySQL](https://img.shields.io/badge/Database-MySQL%20(db__balance__ai)-4479A1?logo=mysql&logoColor=white)
