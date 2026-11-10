@@ -8,48 +8,7 @@
 ![TensorFlow.js](https://img.shields.io/badge/AI%20Brain-TensorFlow.js-FF6F00?logo=tensorflow&logoColor=white)
 ![Web Workers](https://img.shields.io/badge/Concurrency-HTML5%20Web%20Workers-E34F26?logo=html5&logoColor=white)
 
-**BalanceAI** adalah laboratorium simulasi interaktif berbasis **1-Page Web Application** yang dirancang khusus sebagai media pembelajaran **Reinforcement Learning (RL)** untuk mahasiswa. Simulasi ini memvisualisasikan bagaimana karakter **Manusia 3D (*Bipedal Humanoid*)** belajar menjaga keseimbangan dan melangkah dari kondisi belum bisa berdiri (bayi) hingga mahir berjalan mencapai garis finish **20 meter**—seluruhnya berjalan di browser **tanpa Python dan tanpa Node.js**.
-
----
-
-## 🎯 Mengapa Simulasi Ini Mudah Dipelajari Mahasiswa?
-
-Berbeda dengan kode RL berbasis teks/terminal yang abstrak, **BalanceAI** memperlihatkan 4 komponen inti Reinforcement Learning secara visual dan *real-time* dalam satu layar:
-
-1. **🧍 Environment & Agent (Three.js 3D)**
-   Manusia 3D dengan artikulasi sendi lengkap (kepala, dada/torso, bahu, siku, pinggul, paha, lutut, pergelangan kaki, dan sensor telapak sepatu) di atas lintasan atletik 20 meter.
-2. **📡 State / Sensor Tubuh ($s_t \in \mathbb{R}^8$)**
-   Delapan sensor proprioseptif yang dibaca oleh otak AI setiap $0.025\text{ detik}$:
-   - Kemiringan badan ($\theta_{\text{torso}}$) & kecepatan sudut jatuh ($\omega_{\text{torso}}$)
-   - Kecepatan maju ($v_x$) & ketinggian pinggul ($y_{\text{hip}}$)
-   - Selisih ayunan paha kiri-kanan ($\theta_{\text{hip,L}} - \theta_{\text{hip,R}}$)
-   - Selisih tekukan lutut ($\theta_{\text{knee,L}} - \theta_{\text{knee,R}}$)
-   - Fase ritme langkah ($\sin\phi, \cos\phi$) serta indikator kontak telapak kaki dengan tanah.
-3. **🧠 Brain & Action ($\pi_\theta(a|s)$ via TensorFlow.js di Web Worker)**
-   Jaringan Saraf Tiruan (*Deep Neural Network* `8 → 64 → 64 → 7`) mengevaluasi nilai $Q(s,a)$ untuk memilih **1 dari 7 aksi koordinasi otot**:
-   - `0`: Ayun Kaki Kiri Maju
-   - `1`: Ayun Kaki Kanan Maju
-   - `2`: Tegakkan Badan (Rem Condong Depan)
-   - `3`: Tegakkan Badan (Tahan Condong Belakang)
-   - `4`: Langkah Ritmis Seimbang
-   - `5`: Tekuk Lutut Peredam (*Shock Absorber*)
-   - `6`: Dorong Langkah Cepat (*Sprint*)
-4. **🏆 Reward Shaping ($r_t$)**
-   Mahasiswa dapat mengatur bobot hadiah dan hukuman secara langsung menggunakan *slider* dan mengamati rumus:
-   $$r_t = R_{\text{maju}} + R_{\text{tegak}} + R_{\text{langkah}} - P_{\text{energi}} + R_{\text{terminal}}$$
-
----
-
-## 🛠️ Spesifikasi Teknologi
-
-| Komponen | Teknologi | Peran dalam Simulasi |
-| :--- | :--- | :--- |
-| **Backend & API** | PHP 8+ (Native MVC) | Menyediakan halaman utama dan REST API JSON satu pintu (`/landing/api/...`) |
-| **Database** | MySQL (`db_balance_ai`) | Menyimpan riwayat episode, sesi latihan, preset reward, dan bobot model AI |
-| **Frontend UI** | HTML5, CSS3, Bootstrap 5 | Antarmuka laboratorium 1 halaman (*Single-Page Dashboard*) |
-| **Visualisasi 3D** | Three.js (WebGL) | Render karakter manusia 3D 60 FPS, lintasan 20m, efek pijakan, & kamera *orbit/zoom* |
-| **Deep RL Engine** | TensorFlow.js | Jaringan saraf DQN / PPO Actor-Critic & *Experience Replay Buffer* |
-| **Multi-threading** | Web Workers (JS ES6+) | Menjalankan fisika & pelatihan jaringan saraf di *background thread* tanpa *lag* UI |
+Simulasi interaktif berbasis **Web Application** yang dirancang khusus sebagai media pembelajaran **Reinforcement Learning (RL)** untuk mahasiswa. Simulasi ini memvisualisasikan bagaimana karakter **Manusia 3D (*Bipedal Humanoid*)** belajar menjaga keseimbangan dan melangkah dari kondisi belum bisa berdiri (bayi) hingga mahir berjalan mencapai garis finish **20 meter**.
 
 ---
 
