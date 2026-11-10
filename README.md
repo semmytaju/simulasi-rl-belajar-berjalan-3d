@@ -12,14 +12,6 @@
 
 ---
 
-## 📸 Tampilan Simulasi
-
-> 💡 **Catatan Gambar GitHub**: Simpan 1 gambar *screenshot* simulasi Anda dengan nama **`preview.png`** di folder utama proyek ini (sejajar dengan `README.md`).
-
-![Preview Simulasi BalanceAI - Reinforcement Learning Orang Belajar Berjalan](preview.png)
-
----
-
 ## 🎯 Mengapa Simulasi Ini Mudah Dipelajari Mahasiswa?
 
 Berbeda dengan kode RL berbasis teks/terminal yang abstrak, **BalanceAI** memperlihatkan 4 komponen inti Reinforcement Learning secara visual dan *real-time* dalam satu layar:
