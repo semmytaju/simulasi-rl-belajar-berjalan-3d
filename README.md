@@ -1,6 +1,6 @@
 <img src="/images/review.png" width="800">
 
-# 🏃‍♂️ 3D Humanoid Learning to Walk (Reinforcement Learning Web Lab)
+# 3D Humanoid Learning to Walk
 
 ![PHP 8+](https://img.shields.io/badge/PHP-8.0%2B-777BB4?logo=php&logoColor=white)
 ![MySQL](https://img.shields.io/badge/Database-MySQL%20(db__balance__ai)-4479A1?logo=mysql&logoColor=white)
@@ -8,7 +8,7 @@
 ![TensorFlow.js](https://img.shields.io/badge/AI%20Brain-TensorFlow.js-FF6F00?logo=tensorflow&logoColor=white)
 ![Web Workers](https://img.shields.io/badge/Concurrency-HTML5%20Web%20Workers-E34F26?logo=html5&logoColor=white)
 
-Simulasi interaktif berbasis **Web Application** yang dirancang khusus sebagai media pembelajaran **Reinforcement Learning (RL)** untuk mahasiswa. Simulasi ini memvisualisasikan bagaimana karakter **Manusia 3D (*Bipedal Humanoid*)** belajar menjaga keseimbangan dan melangkah dari kondisi belum bisa berdiri (bayi) hingga mahir berjalan mencapai garis finish **20 meter**.
+Simulasi interaktif berbasis **Web Application** yang dirancang khusus sebagai media pembelajaran **Reinforcement Learning (RL)** untuk mahasiswa. Simulasi ini memvisualisasikan bagaimana karakter **Manusia 3D (*Bipedal Humanoid*)** belajar menjaga keseimbangan dan melangkah dari kondisi belum bisa berdiri (bayi) hingga mahir berjalan mencapai garis finish **20 meter** menggunakan pendekatan Reinforcement Learning dengan Deep Q-Network (DQN) yang menggabungkan metode klasik Q-Learning dengan Deep Neural Network (Jaringan Saraf Tiruan).
 
 ---
 
